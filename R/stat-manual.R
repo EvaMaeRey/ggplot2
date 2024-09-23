@@ -29,8 +29,8 @@
 #'
 #' # Using a custom function
 #' make_hull <- function(data) {
-#'   hull <- chull(x = data$x, y = data$y)
-#'   data.frame(x = data$x[hull], y = data$y[hull])
+#'   hull_indices <- chull(x = data$x, y = data$y)
+#'   data.frame(x = data$x[hull_indices], y = data$y[hull_indices])
 #' }
 #'
 #' p + stat_manual(
@@ -43,8 +43,8 @@
 #' p + stat_manual(
 #'   fun  = with,
 #'   args = list(expr = quote({
-#'     hull <- chull(x, y)
-#'     list(x = x[hull], y = y[hull])
+#'     hull_indices <- chull(x, y)
+#'     list(x = x[hull_indices], y = y[hull_indices])
 #'   })),
 #'   geom = "polygon", fill = NA
 #' )
@@ -80,7 +80,7 @@
 #'   p + stat_manual(
 #'     geom = "polygon", fill = NA,
 #'     fun  = dplyr::reframe,
-#'     args = vars(hull = chull(x, y), x = x[hull], y = y[hull])
+#'     args = vars(hull_indices = chull(x, y), x = x[hull_indices], y = y[hull_indices])
 #'   )
 #' }
 stat_manual <- function(
